@@ -3,6 +3,10 @@ using System.Linq;
 
 namespace SimpFinanceService.Models
 {
+
+    /// <summary>
+    /// Singleton to assist with DB operations
+    /// </summary>
     public class DBOperations
     {
         private static DBOperations _instance;
@@ -14,6 +18,10 @@ namespace SimpFinanceService.Models
         }
 
 
+        /// <summary>
+        /// Takes validated NumberWord object and appends it to the database
+        /// </summary>
+        /// <param name="nm"></param>
         public void AddNumberModel(NumberToWord nm)
         {
             using (var ent = SimplifyDBHelper.DBEntities)
@@ -23,6 +31,10 @@ namespace SimpFinanceService.Models
             }
         }
 
+        /// <summary>
+        /// Returns all numberword objects to validated user
+        /// </summary>
+        /// <param name="nm"></param>
         public IEnumerable<NumberToWord> GetAllNumberModels()
         {
             using (var ent = SimplifyDBHelper.DBEntities)

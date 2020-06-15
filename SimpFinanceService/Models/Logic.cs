@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace SimpFinanceService.Models
 {
+
+    /// <summary>
+    /// This class is a dummy, would be extended with logging operations to contain errors occuring on the server side
+    /// </summary>
     public class Logic
     {
 

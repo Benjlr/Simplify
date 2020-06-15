@@ -9,7 +9,12 @@ using System.Web.Http;
 
 namespace SimpFinanceService.Controllers
 {
-    //[Authorize]
+    /// <summary>
+    /// The server side controller for the api, implemented from https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi
+    /// </summary>
+
+
+
     public class NumbersController : ApiController
     {
         private readonly Logic _logic;
@@ -19,8 +24,9 @@ namespace SimpFinanceService.Controllers
             _logic = new Logic();
         }
 
+        
 
-        // OWIN auth middleware constants -> These claims must match what's in your JWT, like for like. Click the 'claims' tab to check.
+        // gets the scope authorisations of the logged in user
         public const string scopeElement = "http://schemas.microsoft.com/identity/claims/scope";
         public const string objectIdElement = "http://schemas.microsoft.com/identity/claims/objectidentifier";
 
@@ -28,22 +34,23 @@ namespace SimpFinanceService.Controllers
         public static string ReadPermission = ConfigurationManager.AppSettings["api:ReadScope"];
         public static string WritePermission = ConfigurationManager.AppSettings["api:WriteScope"];
 
-        /*
-         * GET all tasks for user
-         */
+        /// <summary>
+        /// Returns a list of recorded NumberToWord objects from the database
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<NumberToWord> Get()
         {
             HasRequiredScopes(ReadPermission);
-
             var owner = CheckClaimMatch(ClaimTypes.NameIdentifier);
-
             IEnumerable<NumberToWord> userTasks = _logic.GetAll();
             return userTasks;
         }
 
-        /*
-        * POST a new numberword for user
-        */
+        /// <summary>
+        /// Adds a new numbertoWord object to the database
+        /// </summary>
+        /// <param name="nw">This value is taken from the Encoded content of the url</param>
+        /// <returns></returns>
         public  IHttpActionResult Post(NumberToWord nw)
         {
             HasRequiredScopes(WritePermission);
@@ -55,9 +62,11 @@ namespace SimpFinanceService.Controllers
         }
 
 
-        /*
-         * Check user claims match task details
-         */
+        /// <summary>
+        /// Validates the current user claims
+        /// </summary>
+        /// <param name="claim"></param>
+        /// <returns></returns>
         private string CheckClaimMatch(string claim)
         {
             try
@@ -74,7 +83,10 @@ namespace SimpFinanceService.Controllers
             }
         }
 
-        // Validate to ensure the necessary scopes are present.
+        /// <summary>
+        /// Validates the user has relevant permission
+        /// </summary>
+        /// <param name="permission">The permission</param>
         private void HasRequiredScopes(String permission)
         {
             if (!ClaimsPrincipal.Current.FindFirst(scopeElement).Value.Contains(permission))

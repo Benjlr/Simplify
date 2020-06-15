@@ -19,6 +19,11 @@ namespace SimpFinanceService
         public static string SignUpSignInPolicy = ConfigurationManager.AppSettings["ida:SignUpSignInPolicyId"];
         public static string DefaultPolicy = SignUpSignInPolicy;
         
+
+        /// <summary>
+        /// Owin startup method used to initialise Oauth authentication
+        /// </summary>
+        /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
             TokenValidationParameters tvps = new TokenValidationParameters

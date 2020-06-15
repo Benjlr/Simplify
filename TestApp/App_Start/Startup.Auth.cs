@@ -18,9 +18,12 @@ namespace TestApp
 {
 	public partial class Startup
 	{
-		/*
-        * Configure the OWIN middleware
-        */
+		/// <summary>
+		/// Iplemented from https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi
+		///
+		/// Configures the OpenID parameters with the appropriate azure policies
+		/// </summary>
+		/// <param name="app"></param>
 
 		public void ConfigureAuth(IAppBuilder app)
 		{

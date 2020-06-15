@@ -10,6 +10,9 @@ namespace SimpFinanceService
 {
     // This class is necessary because the OAuthBearer Middleware does not leverage
     // the OpenID Connect metadata endpoint exposed by the STS by default.
+
+    // SOURCE: https://docs.microsoft.com/en-us/azure/active-directory-b2c/openid-connect
+
     public class OpenIdConnectCachingSecurityTokenProvider : IIssuerSecurityKeyProvider
     {
         public ConfigurationManager<OpenIdConnectConfiguration> _configManager;

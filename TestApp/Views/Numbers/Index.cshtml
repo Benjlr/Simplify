@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Number List";
+}
+
+<h2>Number Words!</h2>
+
+@using (Html.BeginForm("Create", "Numbers", FormMethod.Post))
+{
+    <div>
+        New Item: <input type="text" name="description">
+        <input type="submit" value="Add">
+    </div>
+}
+
+<br />
+
+<table class="table table-bordered table-striped table-hover table-condensed" style="table-layout: auto">
+
+    <tr>
+        <th>Items:</th>
+    </tr>
+
+    @foreach (var item in ViewBag.Numbers)
+    {
+        <tr>
+            <td>
+                <fieldset> Input Number :  @item["InputNumber"]   Output Text:  @item["OutputText"]</fieldset>
+            </td>
+        </tr>
+    }
+
+</table>

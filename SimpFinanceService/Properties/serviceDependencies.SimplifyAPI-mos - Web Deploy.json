@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup')]/providers/Microsoft.Sql/servers/azure-8a/databases/Simplify",
+      "type": "mssql.azure",
+      "connectionId": "simplify",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

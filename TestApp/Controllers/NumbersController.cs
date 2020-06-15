@@ -80,7 +80,7 @@ namespace TestApp.Controllers
                 if (System.Text.RegularExpressions.Regex.IsMatch(description, @"^[a-zA-Z]+$")) throw new WebException("Please provide a number");
                 if (String.IsNullOrEmpty(description)) throw new WebException("Please provide a number");
                 if (description.Contains('.') && description.Split('.')[1].Length > 4) throw new WebException("The number can only have a precision of up to 4 decimal places");
-                if (description.Length > 11) throw new WebException("number contains too many digits");
+                if (description.Length >= 11) throw new WebException("number contains too many digits");
 
 
                 string accessToken = null;
